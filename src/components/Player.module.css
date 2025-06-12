@@ -1,0 +1,188 @@
+.visualizer {
+  width: 100%;
+  margin: 1.5rem 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+.emptyState {
+  color: var(--gray);
+  font-style: italic;
+  text-align: center;
+  margin-top: 2rem;
+  padding: 2rem;
+}
+
+.episodeInfo img {
+  width: 150px;
+  height: 150px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.loadingPlaceholder {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin: 0.5rem 0;
+  animation: pulse 1.5s infinite;
+}
+/* Loading animation */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.loading {
+  animation: pulse 1.5s infinite;
+}
+
+.loadingPlaceholder {
+  height: 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.loadingPlaceholder:first-child {
+  width: 60%;
+}
+
+.loadingPlaceholder:last-child {
+  width: 40%;
+}
+
+/* Button transitions */
+.controls button {
+  transition: all 0.2s ease;
+}
+
+.controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.controls button.playing {
+  background: #ff4757;
+}
+.player {
+  flex: 1;
+  padding: 2rem;
+  background: rgba(30, 39, 46, 0.7);
+  display: flex;
+  flex-direction: column;
+}
+
+.episode-info {
+  margin-bottom: 2rem;
+}
+
+.episode-info h2 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.episode-info p {
+  color: var(--gray);
+}
+
+.audio-controls {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  border-radius: 10px;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  position: relative;
+}
+
+.progress {
+  position: absolute;
+  height: 100%;
+  width: 30%;
+  background: var(--primary);
+  border-radius: 2px;
+}
+.audio-player {
+  width: 100%;
+  margin: 1rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.controls button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+}
+/* Add these to existing styles */
+.controls button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s;
+}
+
+.controls button:hover {
+  transform: scale(1.1);
+}
+
+.progressBar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 0 1rem;
+}
+
+.progress {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 3px;
+  transition: width 0.1s;
+}
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.loading {
+  animation: pulse 1.5s infinite;
+}
+
+/* Add to episode info when no data is loaded */
+.episode-info.loading h2,
+.episode-info.loading p {
+  width: 80%;
+  height: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}

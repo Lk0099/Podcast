@@ -1,0 +1,26 @@
+/* Modern Reset & Base Styles */
+:root {
+  --primary: #6c5ce7;
+  --dark: #1e272e;
+  --light: #f5f6fa;
+  --gray: #d2dae2;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--dark);
+  color: var(--light);
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
