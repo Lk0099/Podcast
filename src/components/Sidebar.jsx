@@ -1,8 +1,5 @@
-
 import { podcasts } from "../data/podcasts";
 import styles from "./Sidebar.module.css";
-import styles from "./Sidebar.module.css";
-import { podcasts } from "../data/podcasts";
 
 export default function Sidebar({ onSelectEpisode }) {
   return (
