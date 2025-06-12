@@ -1,0 +1,351 @@
+.registerPage {
+  min-height: 100vh;
+  background: var(--gradient-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.registerPage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-3xl);
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.heroContent {
+  max-width: 500px;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: var(--spacing-lg);
+  color: var(--light);
+}
+
+.highlight {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  color: var(--gray-300);
+  margin-bottom: var(--spacing-3xl);
+  line-height: 1.6;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.feature {
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: flex-start;
+}
+
+.featureIcon {
+  font-size: 2rem;
+  background: var(--gradient-primary);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  height: 60px;
+  box-shadow: var(--shadow-lg);
+}
+
+.feature h3 {
+  color: var(--light);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+.feature p {
+  color: var(--gray-400);
+  margin: 0;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(20px);
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 480px;
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  color: var(--gray-400);
+  text-decoration: none;
+  font-size: 0.875rem;
+  margin-bottom: var(--spacing-lg);
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: var(--primary-light);
+}
+
+.formHeader h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--light);
+  margin-bottom: var(--spacing-sm);
+}
+
+.formHeader p {
+  color: var(--gray-400);
+  margin: 0;
+}
+
+.loginLink {
+  color: var(--primary-light);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.loginLink:hover {
+  text-decoration: underline;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.nameFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+
+.inputError {
+  border-color: var(--error) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.interestsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+.interestTag {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--gray-800);
+  border: 1px solid var(--gray-600);
+  border-radius: var(--border-radius-full);
+  color: var(--gray-300);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.interestTag:hover {
+  background: var(--gray-700);
+  border-color: var(--primary);
+}
+
+.interestTagActive {
+  background: var(--gradient-primary);
+  border-color: var(--primary);
+  color: white;
+  transform: scale(1.05);
+}
+
+.checkboxGroup {
+  margin-bottom: var(--spacing-md);
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  color: var(--gray-300);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  margin-top: 2px;
+}
+
+.checkboxText {
+  flex: 1;
+}
+
+.link {
+  color: var(--primary-light);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.submitButton {
+  width: 100%;
+  margin-top: var(--spacing-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.loading {
+  pointer-events: none;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.socialSignup {
+  margin-top: var(--spacing-3xl);
+}
+
+.divider {
+  position: relative;
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gray-600);
+}
+
+.divider span {
+  background: var(--dark-secondary);
+  padding: 0 var(--spacing-lg);
+  color: var(--gray-400);
+  font-size: 0.875rem;
+}
+
+.socialButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+
+.socialButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--gray-800);
+  border: 1px solid var(--gray-600);
+  border-radius: var(--border-radius);
+  color: var(--light);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.socialButton:hover {
+  background: var(--gray-700);
+  transform: translateY(-1px);
+}
+
+.socialButton img,
+.socialButton svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  
+  .leftSection {
+    display: none;
+  }
+  
+  .rightSection {
+    padding: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 640px) {
+  .nameFields {
+    grid-template-columns: 1fr;
+  }
+  
+  .interestsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  
+  .socialButtons {
+    grid-template-columns: 1fr;
+  }
+  
+  .rightSection {
+    padding: var(--spacing-md);
+  }
+}
