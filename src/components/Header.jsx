@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 
-export default function Header({ user }) {
+export default function Header({ user, onLogout }) {
+  const handleLogout = () => {
+    onLogout?.();
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -26,6 +30,7 @@ export default function Header({ user }) {
               />
               <span className={styles.userName}>{user.name}</span>
               <Link to="/dashboard" className="btn btn-primary btn-sm">Dashboard</Link>
+              <button onClick={handleLogout} className="btn btn-outline btn-sm">Logout</button>
             </div>
           ) : (
             <div className={styles.authButtons}>

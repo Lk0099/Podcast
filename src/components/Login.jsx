@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import SocialAuth from './SocialAuth';
 import styles from './Login.module.css';
 
-export default function Login() {
+export default function Login({ onLogin }) {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -11,6 +12,7 @@ export default function Login() {
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -53,12 +55,27 @@ export default function Login() {
     
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      const mockUser = {
+        id: 'user_123',
+        name: 'John Doe',
+        email: formData.email,
+        avatar: 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
+      };
+      
+      onLogin?.(mockUser);
       console.log('Login successful:', formData);
+      navigate('/dashboard');
     } catch (error) {
       console.error('Login failed:', error);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleSocialLogin = (user) => {
+    onLogin?.(user);
+    navigate('/dashboard');
   };
 
   return (
@@ -161,23 +178,7 @@ export default function Login() {
               </button>
             </form>
 
-            <div className={styles.socialLogin}>
-              <div className={styles.divider}>
-                <span>Or continue with</span>
-              </div>
-              <div className={styles.socialButtons}>
-                <button className={styles.socialButton}>
-                  <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" />
-                  Google
-                </button>
-                <button className={styles.socialButton}>
-                  <svg viewBox="0 0 24 24" width="20" height="20">
-                    <path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                  </svg>
-                  Facebook
-                </button>
-              </div>
-            </div>
+            <SocialAuth onSocialLogin={handleSocialLogin} />
           </div>
         </div>
       </div>
