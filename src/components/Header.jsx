@@ -11,7 +11,7 @@ export default function Header({ user, onLogout }) {
       <div className={styles.container}>
         <Link to="/" className={styles.logo}>
           <span className={styles.logoIcon}>🎙️</span>
-          <span className={styles.logoText}>PodcastPro</span>
+          <span className={styles.logoText}>RISE & Speak</span>
         </Link>
         
         <nav className={styles.nav}>

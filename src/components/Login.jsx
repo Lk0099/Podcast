@@ -12,6 +12,9 @@ export default function Login({ onLogin }) {
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
+  const [resetSent, setResetSent] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -54,11 +57,12 @@ export default function Login({ onLogin }) {
     setIsLoading(true);
     
     try {
+      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
       
       const mockUser = {
         id: 'user_123',
-        name: 'John Doe',
+        name: formData.email.split('@')[0].charAt(0).toUpperCase() + formData.email.split('@')[0].slice(1),
         email: formData.email,
         avatar: 'https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
       };
@@ -68,6 +72,31 @@ export default function Login({ onLogin }) {
       navigate('/dashboard');
     } catch (error) {
       console.error('Login failed:', error);
+      setErrors({ general: 'Login failed. Please try again.' });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    if (!resetEmail || !/\S+@\S+\.\S+/.test(resetEmail)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      // Simulate password reset
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setResetSent(true);
+      setTimeout(() => {
+        setShowForgotPassword(false);
+        setResetSent(false);
+        setResetEmail('');
+      }, 3000);
+    } catch (error) {
+      console.error('Password reset failed:', error);
     } finally {
       setIsLoading(false);
     }
@@ -78,30 +107,100 @@ export default function Login({ onLogin }) {
     navigate('/dashboard');
   };
 
+  if (showForgotPassword) {
+    return (
+      <div className={styles.loginPage}>
+        <div className={styles.container}>
+          <div className={styles.forgotPasswordSection}>
+            <div className={styles.forgotPasswordCard}>
+              <h2>Reset Your Password</h2>
+              <p>Enter your email address and we'll send you a link to reset your password.</p>
+              
+              {resetSent ? (
+                <div className={styles.successMessage}>
+                  <div className={styles.successIcon}>✅</div>
+                  <h3>Reset Link Sent!</h3>
+                  <p>Check your email for password reset instructions.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleForgotPassword} className={styles.forgotForm}>
+                  <div className="form-group">
+                    <label htmlFor="resetEmail" className="form-label">Email Address</label>
+                    <input
+                      type="email"
+                      id="resetEmail"
+                      value={resetEmail}
+                      onChange={(e) => setResetEmail(e.target.value)}
+                      className="form-input"
+                      placeholder="Enter your email address"
+                      required
+                    />
+                  </div>
+                  
+                  <div className={styles.forgotActions}>
+                    <button
+                      type="submit"
+                      disabled={isLoading}
+                      className="btn btn-primary btn-lg"
+                    >
+                      {isLoading ? 'Sending...' : 'Send Reset Link'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowForgotPassword(false)}
+                      className="btn btn-outline"
+                    >
+                      Back to Login
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.loginPage}>
       <div className={styles.container}>
         <div className={styles.leftSection}>
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>
-              Welcome Back to <span className={styles.highlight}>PodcastPro</span>
+              Welcome Back to <span className={styles.highlight}>RISE & Speak</span>
             </h1>
             <p className={styles.heroSubtitle}>
-              Continue your podcast journey where you left off.
+              Continue your podcast journey where you left off. Discover, listen, and grow with every episode.
             </p>
             
             <div className={styles.stats}>
               <div className={styles.stat}>
-                <div className={styles.statNumber}>50K+</div>
-                <div className={styles.statLabel}>Active Listeners</div>
+                <div className={styles.statNumber}>100K+</div>
+                <div className={styles.statLabel}>Active Speakers</div>
               </div>
               <div className={styles.stat}>
-                <div className={styles.statNumber}>10K+</div>
+                <div className={styles.statNumber}>25K+</div>
                 <div className={styles.statLabel}>Podcasts</div>
               </div>
               <div className={styles.stat}>
-                <div className={styles.statNumber}>1M+</div>
+                <div className={styles.statNumber}>5M+</div>
                 <div className={styles.statLabel}>Episodes</div>
+              </div>
+            </div>
+
+            <div className={styles.features}>
+              <div className={styles.feature}>
+                <span className={styles.featureIcon}>🎯</span>
+                <span>Personalized recommendations</span>
+              </div>
+              <div className={styles.feature}>
+                <span className={styles.featureIcon}>📱</span>
+                <span>Cross-device synchronization</span>
+              </div>
+              <div className={styles.feature}>
+                <span className={styles.featureIcon}>🔔</span>
+                <span>Smart notifications</span>
               </div>
             </div>
           </div>
@@ -113,9 +212,15 @@ export default function Login({ onLogin }) {
               <Link to="/" className={styles.backLink}>
                 ← Back to Home
               </Link>
-              <h2>Sign In</h2>
-              <p>Don't have an account? <Link to="/register" className={styles.registerLink}>Create one</Link></p>
+              <h2>Sign In to Your Account</h2>
+              <p>Don't have an account? <Link to="/register" className={styles.registerLink}>Create one now</Link></p>
             </div>
+
+            {errors.general && (
+              <div className={styles.errorAlert}>
+                {errors.general}
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} className={styles.form}>
               <div className="form-group">
@@ -157,9 +262,13 @@ export default function Login({ onLogin }) {
                   />
                   <span>Remember me</span>
                 </label>
-                <Link to="/forgot-password" className={styles.forgotLink}>
+                <button
+                  type="button"
+                  onClick={() => setShowForgotPassword(true)}
+                  className={styles.forgotLink}
+                >
                   Forgot password?
-                </Link>
+                </button>
               </div>
 
               <button
@@ -173,7 +282,7 @@ export default function Login({ onLogin }) {
                     Signing In...
                   </>
                 ) : (
-                  'Sign In'
+                  'Sign In & Rise'
                 )}
               </button>
             </form>
