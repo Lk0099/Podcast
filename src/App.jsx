@@ -9,6 +9,7 @@ import Dashboard from "./components/Dashboard";
 import Discover from "./components/Discover";
 import Trending from "./components/Trending";
 import HomePage from "./components/HomePage";
+import AdminPanel from "./components/AdminPanel";
 
 function App() {
   const [currentEpisode, setCurrentEpisode] = useState(null);
@@ -34,6 +35,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard user={user} />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/trending" element={<Trending />} />
+        <Route path="/admin" element={<AdminPanel />} />
         <Route path="/player" element={
           <>
             <Header user={user} onLogout={handleLogout} />

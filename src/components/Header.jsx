@@ -19,6 +19,7 @@ export default function Header({ user, onLogout }) {
           <Link to="/discover" className={styles.navLink}>Discover</Link>
           <Link to="/trending" className={styles.navLink}>Trending</Link>
           <Link to="/player" className={styles.navLink}>Player</Link>
+          <Link to="/admin" className={styles.navLink}>🛡️ Admin</Link>
         </nav>
 
         <div className={styles.authSection}>
