@@ -10,6 +10,10 @@ import Discover from "./components/Discover";
 import Trending from "./components/Trending";
 import HomePage from "./components/HomePage";
 import AdminPanel from "./components/AdminPanel";
+import About from "./components/pages/About";
+import Contact from "./components/pages/Contact";
+import Privacy from "./components/pages/Privacy";
+import Terms from "./components/pages/Terms";
 
 function App() {
   const [currentEpisode, setCurrentEpisode] = useState(null);
@@ -36,6 +40,20 @@ function App() {
         <Route path="/discover" element={<Discover />} />
         <Route path="/trending" element={<Trending />} />
         <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/help" element={<Contact />} />
+        <Route path="/careers" element={<About />} />
+        <Route path="/press" element={<About />} />
+        <Route path="/blog" element={<About />} />
+        <Route path="/community" element={<Contact />} />
+        <Route path="/feedback" element={<Contact />} />
+        <Route path="/cookies" element={<Privacy />} />
+        <Route path="/dmca" element={<Terms />} />
+        <Route path="/categories" element={<Discover />} />
+        <Route path="/creators" element={<About />} />
         <Route path="/player" element={
           <>
             <Header user={user} onLogout={handleLogout} />
